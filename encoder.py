@@ -72,7 +72,7 @@ class Encoder():
     
     
     def set_position(self, position):
-        ''' @brief              Updates encoder position and delta
+        ''' @brief              Updates encoder position
             @details
             @param  position    The new position of the encoder shaft 
         '''

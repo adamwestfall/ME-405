@@ -21,35 +21,37 @@ class MotorDriver:
     def __init__(self, en_pin, in1pin, in2pin, timer): 
         '''   @brief                              Constructor for L6206 motor driver hardware
            @details                            
-           @param en_pin
-           @param in1pin
-           @param in2pin
-           @param timer                   Defines the hardware timer used with the motorDriver
+           @param motorTimer                   Defines the hardware timer used with the motorDriver
         '''
         
-        # enable pin
-        self.en_pin = en_pin
-
-        #input pins
-        self.in1pin = in1pin
-        self.in2pin = in2pin
-
-        # initializing timer
-        self.timer = timer
+        ## Both nSleep and nFault are pulled high to enable and low to disable
+        self.nSLEEP = pyb.Pin.cpu.A15
+# =============================================================================
+#       The fault detection is complicated!  Consult Lab3_README.txt for more
+#       information on how to properly implement this
+# =============================================================================
+        self.nFAULT = pyb.Pin.cpu.B2 # or 6, or 8? 
+        self.faultCondition = (pyb.ExtInt(self.nFAULT, mode=pyb.ExtInt.IRQ_FALLING,
+                                         pull=pyb.Pin.PULL_UP, callback=self.fault_cb))
+        self.motorTimer = motorTimer
+        
+        # forces the motor to begin in a disabled state
+        self.nSLEEP.low()
+        self.nFAULT.high()
         
     def enable (self):
         '''   @brief                              Allows the motors to spin
            @details                            Allows the motors to spin by writing the nSLEEP pin
                                                to logic high
         '''
-        self.enable.high()
+        self.nSLEEP.high()
     
     def disable (self):
         '''   @brief                              Disables motor function
            @details                            Keeps the motors from spinning by writing the nSLEEP pin
                                                to logic low
         '''
-        self.enable.low()
+        self.nSLEEP.low()
         
     ## There are several fault conditions that may damage the motor / driver
     ## This function must disable the motor when a fault condition occurs
@@ -62,54 +64,29 @@ class MotorDriver:
 #       open-load
 #       overtemperature        
 # =============================================================================
-
     def fault_cb (self, IRQ_src):
         '''   @brief                           Detects a hardware fault condition
            @details                            Detects a hardware fault condition and interrupts harware function
                                                by disabling motor function
            @param IRQ_src                      The source of the interrupt
         '''
-        print('  *** FAULT DETECTED! SUSPENDING L6206 HARDWARE OPERATION ***')
+        print('  *** FAULT DETECTED! SUSPENDING DRV8847 HARDWARE OPERATION ***')
         self.disable()
     
-    # def clearFaultCondition(self):
-    #     '''   @brief                           Tests the value of the fault pin 
-    #        @details                            
-    #        @return                             Returns a boolean based on the fault pin
-    #     '''
+    def clearFaultCondition(self):
+        '''   @brief                           Tests the value of the fault pin 
+           @details                            
+           @return                             Returns a boolean based on the fault pin
+        '''
         
-    #     faultCondition = self.faultCondition
-    #     print('INITIAL FAULT STATUS: {0}'.format(self.nFAULT))
-    #     if (not self.faultCondition):
-    #           faultCondition = True
-    #           print('MODIFIED FAULT STATUS: {0}'.format(self.nFAULT))
+        faultCondition = self.faultCondition
+        print('INITIAL FAULT STATUS: {0}'.format(self.nFAULT))
+        if (not self.faultCondition):
+              faultCondition = True
+              print('MODIFIED FAULT STATUS: {0}'.format(self.nFAULT))
               
-    #     return faultCondition
-    
-    ##also sets the direction
-    def set_duty(self, duty):
+        return faultCondition
         
-        if (duty > 0):
-            self.duty = duty
-            self.direction = 1
-            #set the "reverse" channel to zero first
-            self.channel2.pulse_width_percent(0)
-            self.channel1.pulse_width_percent(duty)
-            
-        elif (duty < 0):
-            duty *= -1
-            self.duty = duty
-            self.direction = -1
-            #set the "forward channel to zero first
-            self.channel1.pulse_width_percent(0)
-            self.channel2.pulse_width_percent(duty)
-            
-        elif (duty == 0):
-            self.duty = duty
-            self.direction = 0
-            self.brake()
-            # print("{0} is stationary\n".format(self.motorID))
-                    
     def motor (self, inputA, inputB, channelA, channelB, motorID):
         '''   @brief                           Constructor for Motor class
            @details                            
@@ -146,7 +123,6 @@ class Motor:
         self.channelB = channelB
         self.motorID = motorID
         
-        # initialized to zero (off)
         self.duty = 0
         
         self.isRunning = False
@@ -155,6 +131,30 @@ class Motor:
     def getMotorID(self):
         return self.motorID
     
+    ##also sets the direction
+    def setDuty(self, duty):
+        
+        if (duty > 0):
+            self.duty = duty
+            self.direction = 1
+            #set the "reverse" channel to zero first
+            self.channel2.pulse_width_percent(0)
+            self.channel1.pulse_width_percent(duty)
+            
+        elif (duty < 0):
+            duty *= -1
+            self.duty = duty
+            self.direction = -1
+            #set the "forward channel to zero first
+            self.channel1.pulse_width_percent(0)
+            self.channel2.pulse_width_percent(duty)
+            
+        elif (duty == 0):
+            self.duty = duty
+            self.direction = 0
+            self.brake()
+            # print("{0} is stationary\n".format(self.motorID))
+                
     def getDuty(self):
         return self.duty
 
@@ -164,7 +164,6 @@ class Motor:
     def getRunState(self):
         return self.isRunning
     
-    # Why do we need this? Jason - 1/24/23
     def toggleRunState(self):
         self.isRunning = not(self.isRunning)  
         
@@ -181,14 +180,13 @@ if __name__ == '__main__' :
     #defining motor inputs
     input1 = pyb.Pin.cpu.B4
     input2 = pyb.Pin.cpu.B5
-    input3 = pyb.Pin.cpu.PA0
-    input4 = pyb.Pin.cpu.PA1
+    input3 = pyb.Pin.cpu.B0
+    input4 = pyb.Pin.cpu.B1
     
     #creating motor driver / motor objects
-    m1_driver = motor_driver(pyb.Timer(3, freq = 20000))
-    m1 = motor_driver.motor(input1, input2, 1, 2, "Motor A")
-    m2_driver = motor_driver(pyb.Timer(5, freq = 20000))
-    m2 = motorDriver.motor(input3, input4, 1, 2, "Motor B")
+    motorDriver = DRV8847(pyb.Timer(3, freq = 20000))
+    m1 = motorDriver.motor(input1, input2, 1, 2, "Motor A")
+    m2 = motorDriver.motor(input3, input4, 3, 4, "Motor B")
     
-    m_driver.enable()
+    motorDriver.enable()
     
