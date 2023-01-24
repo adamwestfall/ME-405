@@ -1,0 +1,105 @@
+# -*- coding: utf-8 -*-
+
+''' @file                       encoder.py
+    @brief                      A driver for reading from Quadrature Encoders
+    @details
+    @author                     Zachary Stednitz
+    @author                     Solie Grantham
+    @author                     Jason Davis
+    @date                       October 7, 2021
+'''
+import pyb
+import time
+
+class Encoder():
+    ''' @brief                  Interface with quadrature encoders
+        @details
+    '''
+    
+    def __init__(self, pinA, pinB, timNum, ID = None):
+        ''' @brief              Interface with quadrature encoders
+            @details
+        '''
+        self.pinA = pinA
+        self.pinB = pinB
+        self.timNum = timNum
+        self.position = 0     
+        self.delta = 0
+        self.period = 65535 + 1
+        
+        # Optional parameter to assign an ID to the hardware
+        self.ID = ID if ID is not None else None
+        
+        # each pair of pins gets a timer
+        self.encoderTimer = pyb.Timer(timNum, prescaler = 0, period = 65535)
+        
+        # each pin gets a channel
+        self.encoderTimer.channel(1, pyb.Timer.ENC_AB, pin = pinA)
+        self.encoderTimer.channel(2, pyb.Timer.ENC_AB, pin = pinB) 
+        
+        self.prev_count = self.encoderTimer.counter()
+        
+    def update(self):
+        ''' @brief              Updates encoder position and delta
+            @details
+        '''
+        current_count = self.encoderTimer.counter()
+        self.delta = current_count - self.prev_count
+        
+        # This logic handles counter overflow
+        if (self.delta >= self.period/2):
+            self.delta -= self.period()
+        if self.delta <= (-1 * self.period/2):
+            self.delta += self.period
+            
+        self.prev_count = current_count
+        self.position += self.delta
+        
+    def zero(self):
+        self.position = 0
+        
+    def read(self):
+        ''' @brief              Returns encoder position
+            @details
+            @return             The position of the encoder shaft
+        '''
+        return self.position
+    
+    
+    def set_position(self, position):
+        ''' @brief              Updates encoder position and delta
+            @details
+            @param  position    The new position of the encoder shaft 
+        '''
+        self.position = position
+        
+    def get_delta(self):
+        ''' @brief              Returns encoder delta
+            @details
+            @return             The change in position of the encoder shaft
+                                between the most two recent updates
+        '''
+        return self.delta
+    
+    def set_encoder_ID(self, ID):
+        self.ID = ID
+        
+    def get_encoder_ID(self):
+        return self.ID
+        
+if __name__ == '__main__':
+
+    # instantiating our encoders
+    encoderA = Encoder(pyb.Pin.cpu.B6, pyb.Pin.cpu.B7, 4, ID="ENCODER_A")
+    encoderB = Encoder(pyb.Pin.cpu.C6, pyb.Pin.cpu.C7, 3, ID="ENCODER_B")
+
+    while (True):
+
+        try:
+            encoderA.update()
+            print(encoderA.read())
+            # time.sleep(0.5)
+        except KeyboardInterrupt:
+            print("bye bye")
+            break
+
