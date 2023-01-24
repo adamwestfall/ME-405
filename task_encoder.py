@@ -101,6 +101,7 @@ class Task_Encoder():
                         print()
                 
                 #get delta encoder A
+                # does not work properly, if memory serves.  I think the term project "get_delta" methods worked better
                 elif (action == 3):
                     self.transition_to(S3_displayEncoderDelta)
                     if (self.encoder.get_encoder_ID() == "ENCODER A"):
@@ -110,6 +111,7 @@ class Task_Encoder():
                         print()
                 
                 # get delta encoder B
+                # does not work properly, if memory serves.  I think the term project "get_delta" methods worked better
                 elif (action == 8):
                     self.transition_to(S3_displayEncoderDelta)
                     if (self.encoder.get_encoder_ID() == "ENCODER B"):
@@ -118,6 +120,8 @@ class Task_Encoder():
                         self.encoder_share.write(None)
                         print()
                 
+                
+                # SUPER INEFFICIENT! this needs to be completely redone
                 # collect data encoder A
                 elif (action == 4):
                     if (self.encoder.get_encoder_ID() == "ENCODER A"):
