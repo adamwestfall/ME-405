@@ -74,6 +74,7 @@ class Task_User():
         # the list where the deltas are stored
         self.deltas = []
         
+        # SHOULD NOT NEED THE GARBAGE COLLECTOR!!!!!!!!!!!
         gc.enable()
         
     def run(self):

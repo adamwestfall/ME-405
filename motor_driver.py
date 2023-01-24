@@ -188,9 +188,8 @@ if __name__ == '__main__' :
     m1_driver = motor_driver(pyb.Timer(3, freq = 20000))
     m1 = motor_driver.motor(input1, input2, 1, 2, "Motor A")
     m2_driver = motor_driver(pyb.Timer(5, freq = 20000))
-    m2 = motorDriver.motor(input3, input4, 1, 2, "Motor B")
+    m2 = motor_driver.motor(input3, input4, 1, 2, "Motor B")
     
     # turning on the motor
     m1_driver.enable()
     m1_driver.set_duty(75)
-    

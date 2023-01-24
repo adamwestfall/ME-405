@@ -9,6 +9,7 @@ import utime, pyb
 from micropython import const
 
 ## List of possible motor states
+# Definitely not implemented properly
 S0_init = const(0)
 S1_modifyDutyCycle = const(1)
 
@@ -40,25 +41,25 @@ class Task_Motor:
                 if (action == 9):
                     self.transition_to(S1_modifyDutyCycle)
                     if (self.motor.getMotorID() == "MOTOR A"):
-                        duty = self.collectBufferedInput("motor 1")
-                        self.modifyMotorOperation("motor 1", duty)
+                        duty = self.collectBufferedInput("MOTOR A")
+                        self.modifyMotorOperation("MOTOR A", duty)
                 
                 elif (action == 10):
                     self.transition_to(S1_modifyDutyCycle)
                     if (self.motor.getMotorID() == "MOTOR B"):
-                        duty = self.collectBufferedInput("motor 2")
-                        self.modifyMotorOperation("motor 2", duty)
+                        duty = self.collectBufferedInput("MOTOR B")
+                        self.modifyMotorOperation("MOTOR B", duty)
                 
                 # Both motors max fwd    
                 elif (action == 12):
                     self.transition_to(S1_modifyDutyCycle)
                     if (self.motor.getMotorID() == "MOTOR A"):
-                        self.modifyMotorOperation("motor 1", 100)
+                        self.modifyMotorOperation("MOTOR A", 100)
                         self.motor_share.write(12)
                         self.transition_to(S0_init)
                                            
                     elif (self.motor.getMotorID() == "MOTOR B"):
-                        self.modifyMotorOperation("motor 2", 100)
+                        self.modifyMotorOperation("MOTOR B", 100)
                         self.motor_share.write(None)
                         self.transition_to(S0_init)
                 
@@ -67,12 +68,12 @@ class Task_Motor:
                     self.transition_to(S1_modifyDutyCycle)
                     
                     if (self.motor.getMotorID() == "MOTOR A"):
-                        self.modifyMotorOperation("motor 1", -100)
+                        self.modifyMotorOperation("MOTOR A", -100)
                         self.motor_share.write(13)
                         self.transition_to(S0_init)
                         
                     elif (self.motor.getMotorID() == "MOTOR B"):
-                        self.modifyMotorOperation("motor 2", -100)
+                        self.modifyMotorOperation("MOTOR B", -100)
                         self.motor_share.write(None)
                         self.transition_to(S0_init)
                         

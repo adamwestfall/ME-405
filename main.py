@@ -6,10 +6,11 @@ Created on Fri Oct 29 14:37:49 2021
 """
 
 import pyb
-import encoder, DRV8847, shares
+import encoder, motor_driver, shares
 import task_user, task_encoder, task_motor, task_motorDriver
     
 # instantiating our encoders
+# Aligns well with ME 405 structure
 encoder_A = encoder.Encoder(pyb.Pin.cpu.B6, pyb.Pin.cpu.B7, 4, ID="ENCODER A")
 encoder_B = encoder.Encoder(pyb.Pin.cpu.C6, pyb.Pin.cpu.C7, 3, ID="ENCODER B")
 
@@ -19,20 +20,22 @@ encoder_share = shares.Share(0)
 # a share object for the output
 output_share = shares.Share(0)
 
+# a share object for the angular velocity
 delta_share = shares.Share(0)
 
 #defining motor inputs
+# refactored for ME 405 hardware
 input1 = pyb.Pin.cpu.B4
 input2 = pyb.Pin.cpu.B5
-input3 = pyb.Pin.cpu.B0
-input4 = pyb.Pin.cpu.B1
+input3 = pyb.Pin.cpu.PA0
+input4 = pyb.Pin.cpu.PA1
 
 #creating motor driver / motor objects
-motorDriver = DRV8847.DRV8847(pyb.Timer(3, freq = 20000))
-motor_A = motorDriver.motor(input1, input2, encoder_A, 1, 2, "MOTOR A")
-motor_B = motorDriver.motor(input3, input4, encoder_B, 3, 4, "MOTOR B")
-
-listOfMotors = [motor_A, motor_B]
+# creating motor driver / motor objects
+m1_driver = motor_driver(pyb.Timer(3, freq = 20000))
+m1 = motor_driver.motor(input1, input2, 1, 2, "Motor A")
+m2_driver = motor_driver(pyb.Timer(5, freq = 20000))
+m2 = motor_driver.motor(input3, input4, 1, 2, "Motor B")
 
 #creating a share object for the motors
 motor_share = shares.Share()
@@ -45,13 +48,14 @@ task_1 = task_user.Task_User('USER', 10000, encoder_share, output_share, delta_s
 task_2A = task_encoder.Task_Encoder('ENC_A', 10000, encoder_A, encoder_share, output_share, delta_share)
 task_2B = task_encoder.Task_Encoder('ENC_B', 10000, encoder_B, encoder_share, output_share, delta_share)
 
-task_3 = task_motorDriver.Task_motorDriver('MOTOR DRIVER', motorDriver, listOfMotors, motor_share, 10000, False)
+task_3A = task_motorDriver.Task_motorDriver('MOTOR_A DRIVER', m1_driver, motor_share, 10000, False)
+task_3B = task_motorDriver.Task_motorDriver('MOTOR_B DRIVER', m2_driver, motor_share, 10000, False)
 
-task_4A = task_motor.Task_Motor('MOTOR_A', 10000, motor_A, motor_share, output_share)
-task_4B = task_motor.Task_Motor('MOTOR_B', 10000, motor_B, motor_share, output_share)
+task_4A = task_motor.Task_Motor('MOTOR_A', 10000, m1, motor_share, output_share)
+task_4B = task_motor.Task_Motor('MOTOR_B', 10000, m1, motor_share, output_share)
 
 # create a task list
-taskList = [task_1, task_2A, task_2B, task_3, task_4A, task_4B]
+taskList = [task_1, task_2A, task_2B, task_3A, task_3B, task_4A, task_4B]
 
 while (True):
     try:
