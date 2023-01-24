@@ -1,12 +1,10 @@
 # -*- coding: utf-8 -*-
 
 ''' @file                       encoder.py
-    @brief                      A driver for reading from Quadrature Encoders
+    @brief                      A driver for reading from quadrature encoders
     @details
-    @author                     Zachary Stednitz
-    @author                     Solie Grantham
     @author                     Jason Davis
-    @date                       October 7, 2021
+    @date                       January 24, 2023
 '''
 import pyb
 import time
@@ -18,7 +16,7 @@ class Encoder():
     
     def __init__(self, pinA, pinB, timNum, ID = None):
         ''' @brief              Interface with quadrature encoders
-            @details
+            @details            Initialize the encoder hardware with two GPIO pins, a timer, and an optional ID
         '''
         self.pinA = pinA
         self.pinB = pinB
@@ -28,6 +26,7 @@ class Encoder():
         self.period = 65535 + 1
         
         # Optional parameter to assign an ID to the hardware
+        # Useful for debugging 
         self.ID = ID if ID is not None else None
         
         # each pair of pins gets a timer
@@ -40,7 +39,7 @@ class Encoder():
         self.prev_count = self.encoderTimer.counter()
         
     def update(self):
-        ''' @brief              Updates encoder position and delta
+        ''' @brief              Updates encoder position and angular velocity
             @details
         '''
         current_count = self.encoderTimer.counter()
@@ -56,6 +55,10 @@ class Encoder():
         self.position += self.delta
         
     def zero(self):
+        ''' @brief              Resets encoder position to zero
+            @details
+            @return             The position of the encoder shaft
+        '''
         self.position = 0
         
     def read(self):
@@ -93,6 +96,7 @@ if __name__ == '__main__':
     encoderA = Encoder(pyb.Pin.cpu.B6, pyb.Pin.cpu.B7, 4, ID="ENCODER_A")
     encoderB = Encoder(pyb.Pin.cpu.C6, pyb.Pin.cpu.C7, 3, ID="ENCODER_B")
 
+    # runs an infinite loop where the encoder position is continuously returned until a keyboard interrupt is triggered
     while (True):
 
         try:
