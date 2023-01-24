@@ -23,18 +23,25 @@ output_share = shares.Share(0)
 # a share object for the angular velocity
 delta_share = shares.Share(0)
 
+# defining motor driver enable pins
+enable1 = pyb.Pin.cpu.A10
+enable2 = pyb.Pin.cpu.C1
+
 #defining motor inputs
 # refactored for ME 405 hardware
 input1 = pyb.Pin.cpu.B4
 input2 = pyb.Pin.cpu.B5
-input3 = pyb.Pin.cpu.PA0
-input4 = pyb.Pin.cpu.PA1
+input3 = pyb.Pin.cpu.A0
+input4 = pyb.Pin.cpu.A1
+
+timer1 = pyb.Timer(3, freq = 20000)
+timer2 = pyb.Timer(5, freq = 20000)
 
 #creating motor driver / motor objects
-# creating motor driver / motor objects
-m1_driver = motor_driver(pyb.Timer(3, freq = 20000))
+# enable pin, input1, input2, timer
+m1_driver = motor_driver(enable1, input1, input2, timer1)
 m1 = motor_driver.motor(input1, input2, 1, 2, "Motor A")
-m2_driver = motor_driver(pyb.Timer(5, freq = 20000))
+m2_driver = motor_driver(enable2, input3, input4, timer2)
 m2 = motor_driver.motor(input3, input4, 1, 2, "Motor B")
 
 #creating a share object for the motors

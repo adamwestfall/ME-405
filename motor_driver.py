@@ -39,17 +39,17 @@ class MotorDriver:
         
     def enable (self):
         '''   @brief                              Allows the motors to spin
-           @details                            Allows the motors to spin by writing the nSLEEP pin
+           @details                            Allows the motors to spin by writing the en_pin
                                                to logic high
         '''
-        self.enable.high()
+        self.en_pin.high()
     
     def disable (self):
         '''   @brief                              Disables motor function
-           @details                            Keeps the motors from spinning by writing the nSLEEP pin
+           @details                            Keeps the motors from spinning by writing the en_pin
                                                to logic low
         '''
-        self.enable.low()
+        self.en_pin.low()
         
     ## There are several fault conditions that may damage the motor / driver
     ## This function must disable the motor when a fault condition occurs
@@ -181,10 +181,10 @@ if __name__ == '__main__' :
     # defining motor inputs
     input1 = pyb.Pin.cpu.B4
     input2 = pyb.Pin.cpu.B5
-    input3 = pyb.Pin.cpu.PA0
-    input4 = pyb.Pin.cpu.PA1
+    input3 = pyb.Pin.cpu.A0
+    input4 = pyb.Pin.cpu.A1
     
-    # creating motor driver / motor objects
+    # creating motor driver / motor objects - wrong
     m1_driver = motor_driver(pyb.Timer(3, freq = 20000))
     m1 = motor_driver.motor(input1, input2, 1, 2, "Motor A")
     m2_driver = motor_driver(pyb.Timer(5, freq = 20000))
