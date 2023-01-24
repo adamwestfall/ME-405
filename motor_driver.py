@@ -1,6 +1,6 @@
-'''   @file                            DRV8847.py
-   @brief                              Hardware driver for the DRV8847 dual H-bridge chip
-   @details                            Hardware driver for the DRV8847 dual H-bridge chip.  This driver 
+'''   @file                            motor_driver.py
+   @brief                              Hardware driver for the L6206 dual H-bridge chip
+   @details                            Hardware driver for the L6206 dual H-bridge chip.  This driver 
                                        provides functionality to the nSleep pin to enable/disable either
                                        1 stepper motor or 2 DC motors.  Driver provides fault reset functionality
                                        and internally creates virtual motor objects based on user implementation

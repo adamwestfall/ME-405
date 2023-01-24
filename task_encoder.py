@@ -66,7 +66,7 @@ class Task_Encoder():
                 if (action == 1):
                     self.transition_to(S1_zeroEncoder)
                     if (self.encoder.get_encoder_ID() == "ENCODER A"):
-                        self.encoder.set_position(0)
+                        self.encoder.zero()
                         print("{0} position zeroed".format(self.encoder.get_encoder_ID()))
                         
                         # clearing the encoder_share
@@ -77,7 +77,7 @@ class Task_Encoder():
                 elif (action == 6):
                     self.transition_to(S1_zeroEncoder)
                     if (self.encoder.get_encoder_ID() == "ENCODER B"):
-                        self.encoder.set_position(0)
+                        self.encoder.zero()
                         print("{0} position zeroed".format(self.encoder.get_encoder_ID()))
                         self.encoder_share.write(None)
                         print()
