@@ -1,9 +1,12 @@
 # -*- coding: utf-8 -*-
 
 ''' @file                       encoder.py
-    @brief                      A driver for reading from quadrature encoders
+    @brief                      A hardware driver for reading from quadrature encoders
     @details
     @author                     Jason Davis
+    @author                     Conor Fraser
+    @author                     Adam Westfall
+
     @date                       January 24, 2023
 '''
 import pyb
@@ -57,7 +60,6 @@ class Encoder():
     def zero(self):
         ''' @brief              Resets encoder position to zero
             @details
-            @return             The position of the encoder shaft
         '''
         self.position = 0
         
@@ -77,17 +79,18 @@ class Encoder():
         self.position = position
         
     def get_delta(self):
-        ''' @brief              Returns encoder delta
+        ''' @brief              Returns encoder shaft angular velocity
             @details
             @return             The change in position of the encoder shaft
                                 between the most two recent updates
         '''
         return self.delta
-    
-    def set_encoder_ID(self, ID):
-        self.ID = ID
         
     def get_encoder_ID(self):
+        ''' @brief              Returns encoder ID
+            @details
+            @return             An ID tag of string type
+        '''
         return self.ID
         
 if __name__ == '__main__':
