@@ -14,10 +14,11 @@ S2_clearFaultCondition = const(2)
 
 class Task_motorDriver():
     
-    def __init__(self, taskID, motorDriver, listOfMotors, motor_share, period, dbg):
+    def __init__(self, taskID, motorDriver, motor, motor_share, period, dbg):
         self.taskID = taskID
         self.motorDriver = motorDriver
-        self.listOfMotors = listOfMotors
+        # self.listOfMotors = listOfMotors
+        self.motor = motor
         
         self.motor_share = motor_share
         self.period = period
@@ -52,28 +53,31 @@ class Task_motorDriver():
                 
                 elif (action == 11):
                     self.transition_to(S1_modifyMotorOperation)
-                    for index in range(len(self.listOfMotors)):
-                        m = self.listOfMotors[index]
-                        m.toggleRunState()
-                        runState = m.getRunState()
+                    self.motor.toggleRunState()
+                    runState = self.motor.getRunState()
+
+                    # for index in range(len(self.listOfMotors)):
+                    #     m = self.listOfMotors[index]
+                    #     m.toggleRunState()
+                    #     runState = m.getRunState()
                         
                         #enable motors
-                        if (runState == True):
-                            print('{0} is enabled'.format(self.listOfMotors[index].getMotorID()))
-                            self.motorDriver.enable()
-                            if (index == len(self.listOfMotors) - 1):
-                                print()
-                                self.motor_share.write(None)
-                                self.transition_to(S0_init)
-                        
-                        #disable motors
-                        else:
-                            print('{0} is disabled'.format(self.listOfMotors[index].getMotorID()))
-                            self.motorDriver.disable()
-                            if (index == len(self.listOfMotors) - 1):
-                                print()
-                                self.motor_share.write(None)
-                                self.transition_to(S0_init)
+                    if (runState == True):
+                        print('{0} is enabled'.format(self.motor.getMotorID()))
+                        self.motorDriver.enable()
+                        # if (index == len(self.listOfMotors) - 1):
+                        #     print()
+                        self.motor_share.write(None)
+                        self.transition_to(S0_init)
+                    
+                    #disable motors
+                    else:
+                        print('{0} is disabled'.format(self.motor.getMotorID()))
+                        self.motorDriver.disable()
+                        # if (index == len(self.listOfMotors) - 1):
+                        #     print()
+                        self.motor_share.write(None)
+                        self.transition_to(S0_init)
                                 
         else:
             self.transition_to(S0_init)

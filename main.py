@@ -55,8 +55,8 @@ task_1 = task_user.Task_User('USER', 10000, encoder_share, output_share, delta_s
 task_2A = task_encoder.Task_Encoder('ENC_A', 10000, encoder_A, encoder_share, output_share, delta_share)
 task_2B = task_encoder.Task_Encoder('ENC_B', 10000, encoder_B, encoder_share, output_share, delta_share)
 
-task_3A = task_motorDriver.Task_motorDriver('MOTOR_A DRIVER', m1_driver, motor_share, 10000, False)
-task_3B = task_motorDriver.Task_motorDriver('MOTOR_B DRIVER', m2_driver, motor_share, 10000, False)
+task_3A = task_motorDriver.Task_motorDriver('MOTOR_A DRIVER', m1_driver, m1, motor_share, 10000, False)
+task_3B = task_motorDriver.Task_motorDriver('MOTOR_B DRIVER', m2_driver, m2, motor_share, 10000, False)
 
 task_4A = task_motor.Task_Motor('MOTOR_A', 10000, m1, motor_share, output_share)
 task_4B = task_motor.Task_Motor('MOTOR_B', 10000, m1, motor_share, output_share)
