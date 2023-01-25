@@ -42,9 +42,9 @@ class Task_Motor:
                     print("action == 9")
                     self.transition_to(S1_modifyDutyCycle)
                     print(self.motor.getMotorID())
-                    if (self.motor.getMotorID() == "MOTOR A"):
-                        duty = self.collectBufferedInput("MOTOR A")
-                        self.modifyMotorOperation("MOTOR A", duty)
+                    # if (self.motor.getMotorID() == "MOTOR A"):
+                    duty = self.collectBufferedInput("MOTOR A")
+                    self.modifyMotorOperation("MOTOR A", duty)
                 
                 elif (action == 10):
                     self.transition_to(S1_modifyDutyCycle)
@@ -140,7 +140,7 @@ class Task_Motor:
                 print("{0} is stationary\n".format(motorID))
         
         else:
-            self.motor.setDuty(t)
+            self.motor.set_duty(t)
             direction = int(self.motor.getDirection())
             print ('\nSetting motor duty cycle to {0}%'.format(d))
             if (direction > 0):

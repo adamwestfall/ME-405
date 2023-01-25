@@ -87,28 +87,28 @@ class MotorDriver:
     #     return faultCondition
     
     ##also sets the direction
-    def set_duty(self, duty):
+    # def set_duty(self, duty):
         
-        if (duty > 0):
-            self.duty = duty
-            self.direction = 1
-            #set the "reverse" channel to zero first
-            self.channel2.pulse_width_percent(0)
-            self.channel1.pulse_width_percent(duty)
+    #     if (duty > 0):
+    #         self.duty = duty
+    #         self.direction = 1
+    #         #set the "reverse" channel to zero first
+    #         self.channel2.pulse_width_percent(0)
+    #         self.channel1.pulse_width_percent(duty)
             
-        elif (duty < 0):
-            duty *= -1
-            self.duty = duty
-            self.direction = -1
-            #set the "forward channel to zero first
-            self.channel1.pulse_width_percent(0)
-            self.channel2.pulse_width_percent(duty)
+    #     elif (duty < 0):
+    #         duty *= -1
+    #         self.duty = duty
+    #         self.direction = -1
+    #         #set the "forward channel to zero first
+    #         self.channel1.pulse_width_percent(0)
+    #         self.channel2.pulse_width_percent(duty)
             
-        elif (duty == 0):
-            self.duty = duty
-            self.direction = 0
-            self.brake()
-            # print("{0} is stationary\n".format(self.motorID))
+    #     elif (duty == 0):
+    #         self.duty = duty
+    #         self.direction = 0
+    #         self.brake()
+    #         # print("{0} is stationary\n".format(self.motorID))
                     
     def motor (self, inputA, inputB, channelA, channelB, motorID):
         '''   @brief                           Constructor for Motor class
@@ -157,6 +157,29 @@ class Motor:
     
     def getDuty(self):
         return self.duty
+    
+    def set_duty(self, duty):
+        
+        if (duty > 0):
+            self.duty = duty
+            self.direction = 1
+            #set the "reverse" channel to zero first
+            self.channel2.pulse_width_percent(0)
+            self.channel1.pulse_width_percent(duty)
+            
+        elif (duty < 0):
+            duty *= -1
+            self.duty = duty
+            self.direction = -1
+            #set the "forward channel to zero first
+            self.channel1.pulse_width_percent(0)
+            self.channel2.pulse_width_percent(duty)
+            
+        elif (duty == 0):
+            self.duty = duty
+            self.direction = 0
+            self.brake()
+            # print("{0} is stationary\n".format(self.motorID))
 
     def getDirection(self):
         return self.direction
