@@ -87,7 +87,7 @@ class Task_Encoder():
                     self.transition_to(S2_displayEncoderPosition)
                     if (self.encoder.get_encoder_ID() == "ENCODER A"):
                         self.encoder.read()
-                        print("{0} position: {1}".format(self.encoder.get_encoder_ID(), self.encoder.get_position()))
+                        print("{0} position: {1}".format(self.encoder.get_encoder_ID(), self.encoder.read()))
                         self.encoder_share.write(None)
                         print()
                         
@@ -96,7 +96,7 @@ class Task_Encoder():
                     self.transition_to(S2_displayEncoderPosition)
                     if (self.encoder.get_encoder_ID() == "ENCODER B"):
                         self.ticksToRadians(self.encoder.read())
-                        print("{0} position: {1}".format(self.encoder.get_encoder_ID(), self.encoder.get_position()))
+                        print("{0} position: {1}".format(self.encoder.get_encoder_ID(), self.encoder.read()))
                         self.encoder_share.write(None)
                         print()
                 
