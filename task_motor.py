@@ -39,7 +39,9 @@ class Task_Motor:
             if (self.state == S0_init):
                 
                 if (action == 9):
+                    print("action == 9")
                     self.transition_to(S1_modifyDutyCycle)
+                    print(self.motor.getMotorID())
                     if (self.motor.getMotorID() == "MOTOR A"):
                         duty = self.collectBufferedInput("MOTOR A")
                         self.modifyMotorOperation("MOTOR A", duty)

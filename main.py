@@ -58,8 +58,8 @@ task_2B = task_encoder.Task_Encoder('ENC_B', 10000, encoder_B, encoder_share, ou
 task_3A = task_motorDriver.Task_motorDriver('MOTOR A DRIVER', m1_driver, m1, motor_share, 10000, False)
 task_3B = task_motorDriver.Task_motorDriver('MOTOR B DRIVER', m2_driver, m2, motor_share, 10000, False)
 
-task_4A = task_motor.Task_Motor('MOTOR A', 10000, m1, motor_share, output_share)
-task_4B = task_motor.Task_Motor('MOTOR B', 10000, m1, motor_share, output_share)
+task_4A = task_motor.Task_Motor("MOTOR A", 10000, m1, motor_share, output_share)
+task_4B = task_motor.Task_Motor("MOTOR B", 10000, m1, motor_share, output_share)
 
 # create a task list
 taskList = [task_1, task_2A, task_2B, task_3A, task_3B, task_4A, task_4B]

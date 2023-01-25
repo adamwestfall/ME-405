@@ -116,6 +116,7 @@ class Task_User():
                         
                     elif (char_in == 'm'):
                         self.motor_share.write(9)
+                        print("you pressed 'm'")
                     
                     elif (char_in == 'M'):
                         self.motor_share.write(10)
