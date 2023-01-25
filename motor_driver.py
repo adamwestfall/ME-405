@@ -164,16 +164,16 @@ class Motor:
             self.duty = duty
             self.direction = 1
             #set the "reverse" channel to zero first
-            self.channel2.pulse_width_percent(0)
-            self.channel1.pulse_width_percent(duty)
+            self.channel1.pulse_width_percent(0)
+            self.channel2.pulse_width_percent(duty)
             
         elif (duty < 0):
             duty *= -1
             self.duty = duty
             self.direction = -1
             #set the "forward channel to zero first
-            self.channel1.pulse_width_percent(0)
-            self.channel2.pulse_width_percent(duty)
+            self.channel2.pulse_width_percent(0)
+            self.channel1.pulse_width_percent(duty)
             
         elif (duty == 0):
             self.duty = duty
