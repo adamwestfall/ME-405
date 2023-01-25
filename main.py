@@ -39,10 +39,10 @@ timer2 = pyb.Timer(5, freq = 20000)
 
 #creating motor driver / motor objects
 # enable pin, input1, input2, timer
-m1_driver = motor_driver(enable1, input1, input2, timer1)
-m1 = motor_driver.motor(input1, input2, 1, 2, "Motor A")
-m2_driver = motor_driver(enable2, input3, input4, timer2)
-m2 = motor_driver.motor(input3, input4, 1, 2, "Motor B")
+m1_driver = motor_driver.MotorDriver(enable1, input1, input2, timer1)
+m1 = m1_driver.motor(input1, input2, 1, 2, "Motor A")
+m2_driver = motor_driver.MotorDriver(enable2, input3, input4, timer2)
+m2 = m2_driver.motor(input3, input4, 1, 2, "Motor B")
 
 #creating a share object for the motors
 motor_share = shares.Share()

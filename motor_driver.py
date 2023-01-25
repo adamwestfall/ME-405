@@ -120,7 +120,7 @@ class MotorDriver:
            @param channelB                     Timer channel 2 of 2
            @param motorID                      Identifier for the motor
         '''
-        return Motor(inputA, inputB, self.motorTimer, channelA, channelB, motorID)
+        return Motor(inputA, inputB, self.timer, channelA, channelB, motorID)
     
 class Motor:
         
