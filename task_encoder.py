@@ -86,7 +86,7 @@ class Task_Encoder():
                 elif (action == 2):
                     self.transition_to(S2_displayEncoderPosition)
                     if (self.encoder.get_encoder_ID() == "ENCODER A"):
-                        self.encoder.get_position()
+                        self.encoder.read()
                         print("{0} position: {1}".format(self.encoder.get_encoder_ID(), self.encoder.get_position()))
                         self.encoder_share.write(None)
                         print()
@@ -95,7 +95,7 @@ class Task_Encoder():
                 elif (action == 7):
                     self.transition_to(S2_displayEncoderPosition)
                     if (self.encoder.get_encoder_ID() == "ENCODER B"):
-                        self.ticksToRadians(self.encoder.get_position())
+                        self.ticksToRadians(self.encoder.read())
                         print("{0} position: {1}".format(self.encoder.get_encoder_ID(), self.encoder.get_position()))
                         self.encoder_share.write(None)
                         print()
@@ -125,13 +125,13 @@ class Task_Encoder():
                 # collect data encoder A
                 elif (action == 4):
                     if (self.encoder.get_encoder_ID() == "ENCODER A"):
-                        self.output_share.write(self.encoder.get_position())
+                        self.output_share.write(self.encoder.read())
                         self.delta_share.write(self.encoder.get_delta())
                         self.encoder_share.write('k')
                 # collect data encoder B  
                 elif (action == 12):
                     if (self.encoder.get_encoder_ID() == "ENCODER B"):
-                        self.output_share.write(self.encoder.get_position())
+                        self.output_share.write(self.encoder.read())
                         self.delta_share.write(self.encoder.get_delta())
                         self.encoder_share.write('j')
                     
