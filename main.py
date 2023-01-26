@@ -23,8 +23,16 @@ output_share = shares.Share(0)
 # a share object for the angular velocity
 delta_share = shares.Share(0)
 
+# or can refactor to pyb.Pin.board.PA10 which is preferable
 # defining motor driver enable pins
-enable1 = pyb.Pin.cpu.A10
+# enable1 = pyb.Pin(pyb.Pin.board.PA10, mode="PULLUP")
+
+#This is the way to set the condition of the enable pin. Since it is an input, we do not change its value in code.
+# Instead, we check its value and write code to have the hardware either enable or disable based off of the input 
+# pin condition.  We need to refactor the existing code to make this possible and delete methods which attempt to
+# the value of the input.  Lastly, we need to connect an external power supply to the shield and apply ~ 10 volts
+# to spin the motor.
+enable1 = pyb.Pin(pyb.Pin.board.PA10, pyb.Pin.IN,pull=pyb.Pin.PULL_UP)
 enable2 = pyb.Pin.cpu.C1
 
 #defining motor inputs
