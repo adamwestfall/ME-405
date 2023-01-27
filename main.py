@@ -32,8 +32,8 @@ delta_share = shares.Share(0)
 # pin condition.  We need to refactor the existing code to make this possible and delete methods which attempt to
 # the value of the input.  Lastly, we need to connect an external power supply to the shield and apply ~ 10 volts
 # to spin the motor.
-enable1 = pyb.Pin(pyb.Pin.cpu.A10, pyb.Pin.IN,pull=pyb.Pin.PULL_UP)
-enable2 = pyb.Pin(pyb.Pin.cpu.C1,pyb.Pin.IN,pull=pyb.Pin.PULL_UP)
+enable1 = pyb.Pin(pyb.Pin.cpu.A10, pyb.Pin.OUT_PP)
+enable2 = pyb.Pin(pyb.Pin.cpu.C1,pyb.Pin.OUT_PP)
 
 #defining motor inputs
 # refactored for ME 405 hardware

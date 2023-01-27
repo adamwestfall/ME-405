@@ -37,19 +37,19 @@ class MotorDriver:
         # initializing timer
         self.timer = timer
         
-    # def enable (self):
-    #     '''   @brief                              Allows the motors to spin
-    #        @details                            Allows the motors to spin by writing the en_pin
-    #                                            to logic high
-    #     '''
-    #     self.en_pin.high()
+    def enable (self):
+        '''   @brief                              Allows the motors to spin
+           @details                            Allows the motors to spin by writing the en_pin
+                                               to logic high
+        '''
+        self.en_pin.high()
     
-    # def disable (self):
-    #     '''   @brief                              Disables motor function
-    #        @details                            Keeps the motors from spinning by writing the en_pin
-    #                                            to logic low
-    #     '''
-    #     self.en_pin.low()
+    def disable (self):
+        '''   @brief                              Disables motor function
+           @details                            Keeps the motors from spinning by writing the en_pin
+                                               to logic low
+        '''
+        self.en_pin.low()
 
 
         
@@ -211,8 +211,8 @@ if __name__ == '__main__' :
     # pin condition.  We need to refactor the existing code to make this possible and delete methods which attempt to
     # the value of the input.  Lastly, we need to connect an external power supply to the shield and apply ~ 10 volts
     # to spin the motor.
-    enable1 = pyb.Pin(pyb.Pin.cpu.A10, pyb.Pin.OUT,pull=pyb.Pin.PP)
-    enable2 = pyb.Pin(pyb.Pin.cpu.C1,pyb.Pin.OUT,pull=pyb.Pin.PP)
+    enable1 = pyb.Pin(pyb.Pin.cpu.A10, pyb.Pin.IN,pull=pyb.Pin.PULL_UP)
+    enable2 = pyb.Pin(pyb.Pin.cpu.C1,pyb.Pin.IN,pull=pyb.Pin.PULL_UP)
 
     #defining motor inputs
     # refactored for ME 405 hardware
