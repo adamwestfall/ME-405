@@ -50,7 +50,7 @@ class Encoder():
         
         # This logic handles counter overflow
         if (self.delta >= self.period/2):
-            self.delta -= self.period()
+            self.delta -= self.period
         if self.delta <= (-1 * self.period/2):
             self.delta += self.period
             
