@@ -21,8 +21,8 @@ class MotorDriver:
     def __init__(self, en_pin, in1pin, in2pin, timer): 
         '''   @brief                              Constructor for L6206 motor driver hardware
            @details                            
-           @param en_pin
-           @param in1pin
+           @param en_pin                  Encoder Pin
+           @param in1pin                 
            @param in2pin
            @param timer                   Defines the hardware timer used with the motorDriver
         '''
