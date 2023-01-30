@@ -65,6 +65,7 @@ class Task_motorDriver():
                     if (runState == True):
                         print('{0} is enabled'.format(self.motor.getMotorID()))
                         self.motorDriver.enable()
+                        print("Enabling the motor")
                         # if (index == len(self.listOfMotors) - 1):
                         #     print()
                         self.motor_share.write(None)

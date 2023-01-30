@@ -192,7 +192,6 @@ class Motor:
     def getRunState(self):
         return self.isRunning
     
-    # Why do we need this? Jason - 1/24/23
     def toggleRunState(self):
         self.isRunning = not(self.isRunning)  
         
