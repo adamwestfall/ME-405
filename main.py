@@ -1,3 +1,12 @@
+''' @file                       main.py
+    @brief                      Main file to run the encoder and motor hardware.
+    @details                    The main file instantiates necessary pins, encoder, and motor objects to interact with the hardware.
+    @author                     Jason Davis
+    @author                     Conor Fraser
+    @author                     Adam Westfall
+
+    @date                       January 24, 2023
+'''
 import motor_driver, encoder, pyb, time
 
 enable1 = pyb.Pin(pyb.Pin.cpu.A10, pyb.Pin.OUT_PP)
