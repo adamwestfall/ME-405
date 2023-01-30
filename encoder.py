@@ -1,8 +1,7 @@
-# -*- coding: utf-8 -*-
-
 ''' @file                       encoder.py
     @brief                      A hardware driver for reading from quadrature encoders
-    @details
+    @details                    Includes an Encoder class that contains an init, update, zero, read, set_position, get_delta, and get_encoder_ID.
+                                The init function instantiates the necessary pins, timers, and useful encoder values for the quadrature encoders.
     @author                     Jason Davis
     @author                     Conor Fraser
     @author                     Adam Westfall
@@ -13,13 +12,17 @@ import pyb
 import time
 
 class Encoder():
-    ''' @brief                  Interface with quadrature encoders
-        @details
+    ''' @brief                  Interface with quadrature encoders.
+        @details                Includes the init, update, zero, read, set_position, get_delta, and get_encoder_ID functions.
     '''
     
     def __init__(self, pinA, pinB, timNum, ID = None):
-        ''' @brief              Interface with quadrature encoders
-            @details            Initialize the encoder hardware with two GPIO pins, a timer, and an optional ID
+        ''' @brief              Interface with quadrature encoders.
+            @details            Initialize the encoder hardware with two GPIO pins, a timer, and an optional ID.
+            @param pinA         Initialize pinA for the encoder.
+            @param pinB         Initialize pinB for the encoder.  
+            @param timNum       Initalize a timer for use by the encoder.
+            @param ID           Used to set an ID to the encoder.
         '''
         self.pinA = pinA
         self.pinB = pinB
@@ -42,8 +45,9 @@ class Encoder():
         self.prev_count = self.encoderTimer.counter()
         
     def update(self):
-        ''' @brief              Updates encoder position and angular velocity
-            @details
+        ''' @brief              Updates encoder position and angular velocity.
+            @details            Utilizes the period of the encoder, the delta between the last read value 
+                                and count of the encoder to handle overflow and underflow errors.
         '''
         current_count = self.encoderTimer.counter()
         self.delta = current_count - self.prev_count
@@ -58,15 +62,15 @@ class Encoder():
         self.position += self.delta
         
     def zero(self):
-        ''' @brief              Resets encoder position to zero
-            @details
+        ''' @brief              Resets encoder position to zero.
+            @details            
         '''
         self.position = 0
         
     def read(self):
-        ''' @brief              Returns encoder position
+        ''' @brief              Returns encoder position.
             @details
-            @return             The position of the encoder shaft
+            @return             The position of the encoder shaft.
         '''
         return self.position
     
