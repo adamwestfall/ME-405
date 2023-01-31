@@ -1,0 +1,138 @@
+\hypertarget{classencoder_1_1_encoder}{}\doxysection{encoder.\+Encoder Class Reference}
+\label{classencoder_1_1_encoder}\index{encoder.Encoder@{encoder.Encoder}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{classencoder_1_1_encoder_a841e00cadd6ab83d9ac7c6024d1f099c}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, pinA, pinB, tim\+Num, ID=None)
+\item 
+def \mbox{\hyperlink{classencoder_1_1_encoder_a94b3e3878bc94c8c98f51f88b4de6c4c}{update}} (self)
+\item 
+def \mbox{\hyperlink{classencoder_1_1_encoder_ae238ecdbcbce8a193c2e0ffbb4d1dd29}{zero}} (self)
+\item 
+def \mbox{\hyperlink{classencoder_1_1_encoder_aa1c1535160682500f5214f45d8197027}{read}} (self)
+\item 
+def \mbox{\hyperlink{classencoder_1_1_encoder_a097746ac59abf28e6567f5604fe83c1f}{set\+\_\+position}} (self, position)
+\item 
+def \mbox{\hyperlink{classencoder_1_1_encoder_a2f451b6cb3e85e03d45e0ac097e29a29}{get\+\_\+delta}} (self)
+\item 
+def \mbox{\hyperlink{classencoder_1_1_encoder_a9adcb242bfa77d5d5901f56a1053ab6d}{get\+\_\+encoder\+\_\+\+ID}} (self)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classencoder_1_1_encoder_ab20fbee2a3cb2552544ee6ce46bd8d6a}\label{classencoder_1_1_encoder_ab20fbee2a3cb2552544ee6ce46bd8d6a}} 
+{\bfseries pinA}
+\item 
+\mbox{\Hypertarget{classencoder_1_1_encoder_a58a56c978d60e31eaea4cfd9625d9bf7}\label{classencoder_1_1_encoder_a58a56c978d60e31eaea4cfd9625d9bf7}} 
+{\bfseries pinB}
+\item 
+\mbox{\Hypertarget{classencoder_1_1_encoder_a682d2ac7d6d8542f177befe58a999249}\label{classencoder_1_1_encoder_a682d2ac7d6d8542f177befe58a999249}} 
+{\bfseries tim\+Num}
+\item 
+\mbox{\Hypertarget{classencoder_1_1_encoder_a9c15eb087b5869c188cf94e53ea3b4f5}\label{classencoder_1_1_encoder_a9c15eb087b5869c188cf94e53ea3b4f5}} 
+{\bfseries position}
+\item 
+\mbox{\Hypertarget{classencoder_1_1_encoder_ad017c0a5f382fe0dac6ed8920ce90635}\label{classencoder_1_1_encoder_ad017c0a5f382fe0dac6ed8920ce90635}} 
+{\bfseries delta}
+\item 
+\mbox{\Hypertarget{classencoder_1_1_encoder_a1ba76d09851d793223e0c6b13f4ce103}\label{classencoder_1_1_encoder_a1ba76d09851d793223e0c6b13f4ce103}} 
+{\bfseries period}
+\item 
+\mbox{\Hypertarget{classencoder_1_1_encoder_ac720417df607d04e46bb16be8a3ef183}\label{classencoder_1_1_encoder_ac720417df607d04e46bb16be8a3ef183}} 
+{\bfseries ID}
+\item 
+\mbox{\Hypertarget{classencoder_1_1_encoder_a66b5edb880fc79d43a65726a7b33c3f2}\label{classencoder_1_1_encoder_a66b5edb880fc79d43a65726a7b33c3f2}} 
+{\bfseries encoder\+Timer}
+\item 
+\mbox{\Hypertarget{classencoder_1_1_encoder_ae53a3f480c7e6f8eee2649b58c052ae6}\label{classencoder_1_1_encoder_ae53a3f480c7e6f8eee2649b58c052ae6}} 
+{\bfseries prev\+\_\+count}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}     @brief                  Interface with quadrature encoders.
+    @details                Includes the init, update, zero, read, set_position, get_delta, and get_encoder_ID functions.
+\end{DoxyVerb}
+ 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classencoder_1_1_encoder_a841e00cadd6ab83d9ac7c6024d1f099c}\label{classencoder_1_1_encoder_a841e00cadd6ab83d9ac7c6024d1f099c}} 
+\index{encoder.Encoder@{encoder.Encoder}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!encoder.Encoder@{encoder.Encoder}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def encoder.\+Encoder.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{pinA,  }\item[{}]{pinB,  }\item[{}]{tim\+Num,  }\item[{}]{ID = {\ttfamily None} }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}     @brief              Interface with quadrature encoders.
+    @details            Initialize the encoder hardware with two GPIO pins, a timer, and an optional ID.
+    @param pinA         Initialize pinA for the encoder.
+    @param pinB         Initialize pinB for the encoder.  
+    @param timNum       Initalize a timer for use by the encoder.
+    @param ID           Used to set an ID to the encoder.
+\end{DoxyVerb}
+ 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classencoder_1_1_encoder_a2f451b6cb3e85e03d45e0ac097e29a29}\label{classencoder_1_1_encoder_a2f451b6cb3e85e03d45e0ac097e29a29}} 
+\index{encoder.Encoder@{encoder.Encoder}!get\_delta@{get\_delta}}
+\index{get\_delta@{get\_delta}!encoder.Encoder@{encoder.Encoder}}
+\doxysubsubsection{\texorpdfstring{get\_delta()}{get\_delta()}}
+{\footnotesize\ttfamily def encoder.\+Encoder.\+get\+\_\+delta (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}     @brief              Returns encoder shaft angular velocity.
+    @details                Returns encoder shaft angular velocity.
+    @return                 The change in position of the encoder shaft between the most two recent updates.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{classencoder_1_1_encoder_a9adcb242bfa77d5d5901f56a1053ab6d}\label{classencoder_1_1_encoder_a9adcb242bfa77d5d5901f56a1053ab6d}} 
+\index{encoder.Encoder@{encoder.Encoder}!get\_encoder\_ID@{get\_encoder\_ID}}
+\index{get\_encoder\_ID@{get\_encoder\_ID}!encoder.Encoder@{encoder.Encoder}}
+\doxysubsubsection{\texorpdfstring{get\_encoder\_ID()}{get\_encoder\_ID()}}
+{\footnotesize\ttfamily def encoder.\+Encoder.\+get\+\_\+encoder\+\_\+\+ID (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}     @brief              Returns encoder ID.
+    @details                Returns encoder ID.
+    @return                 An ID tag of string type.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{classencoder_1_1_encoder_aa1c1535160682500f5214f45d8197027}\label{classencoder_1_1_encoder_aa1c1535160682500f5214f45d8197027}} 
+\index{encoder.Encoder@{encoder.Encoder}!read@{read}}
+\index{read@{read}!encoder.Encoder@{encoder.Encoder}}
+\doxysubsubsection{\texorpdfstring{read()}{read()}}
+{\footnotesize\ttfamily def encoder.\+Encoder.\+read (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}     @brief              Returns encoder position.
+    @details                Returns encoder position.
+    @return             The position of the encoder shaft.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{classencoder_1_1_encoder_a097746ac59abf28e6567f5604fe83c1f}\label{classencoder_1_1_encoder_a097746ac59abf28e6567f5604fe83c1f}} 
+\index{encoder.Encoder@{encoder.Encoder}!set\_position@{set\_position}}
+\index{set\_position@{set\_position}!encoder.Encoder@{encoder.Encoder}}
+\doxysubsubsection{\texorpdfstring{set\_position()}{set\_position()}}
+{\footnotesize\ttfamily def encoder.\+Encoder.\+set\+\_\+position (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{position }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}     @brief              Updates encoder position.
+    @details                Updates encoder position.
+    @param  position       The new position of the encoder shaft. 
+\end{DoxyVerb}
+ \mbox{\Hypertarget{classencoder_1_1_encoder_a94b3e3878bc94c8c98f51f88b4de6c4c}\label{classencoder_1_1_encoder_a94b3e3878bc94c8c98f51f88b4de6c4c}} 
+\index{encoder.Encoder@{encoder.Encoder}!update@{update}}
+\index{update@{update}!encoder.Encoder@{encoder.Encoder}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily def encoder.\+Encoder.\+update (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}     @brief              Updates encoder position and angular velocity.
+    @details            Utilizes the period of the encoder, the delta between the last read value 
+                        and count of the encoder to handle overflow and underflow errors.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{classencoder_1_1_encoder_ae238ecdbcbce8a193c2e0ffbb4d1dd29}\label{classencoder_1_1_encoder_ae238ecdbcbce8a193c2e0ffbb4d1dd29}} 
+\index{encoder.Encoder@{encoder.Encoder}!zero@{zero}}
+\index{zero@{zero}!encoder.Encoder@{encoder.Encoder}}
+\doxysubsubsection{\texorpdfstring{zero()}{zero()}}
+{\footnotesize\ttfamily def encoder.\+Encoder.\+zero (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}     @brief              Resets encoder position to zero.
+    @details                Resets encoder position to zero.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+encoder.\+py\end{DoxyCompactItemize}

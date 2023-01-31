@@ -1,0 +1,123 @@
+\hypertarget{classmotor__driver_1_1_motor_driver}{}\doxysection{motor\+\_\+driver.\+Motor\+Driver Class Reference}
+\label{classmotor__driver_1_1_motor_driver}\index{motor\_driver.MotorDriver@{motor\_driver.MotorDriver}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{classmotor__driver_1_1_motor_driver_ac30d316b06347c25f2fa3ce1e6b5797a}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, en\+\_\+pin, in1pin, in2pin, timer)
+\item 
+def \mbox{\hyperlink{classmotor__driver_1_1_motor_driver_a63b10626ef7cb4e9f2a84f6e659c196c}{enable}} (self)
+\item 
+def \mbox{\hyperlink{classmotor__driver_1_1_motor_driver_ad6e5414ca07a076c435af9a8b5c45d7c}{disable}} (self)
+\item 
+def \mbox{\hyperlink{classmotor__driver_1_1_motor_driver_adcb3702a5a644780ec7385cbd8d43851}{fault\+\_\+cb}} (self, IRQ\+\_\+src)
+\begin{DoxyCompactList}\small\item\em There are several fault conditions that may damage the motor / driver This function must disable the motor when a fault condition occurs. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classmotor__driver_1_1_motor_driver_a3867a2ea9f8b3bc641dfdd2299e4edbe}{get\+Enable\+State}} (self)
+\item 
+def \mbox{\hyperlink{classmotor__driver_1_1_motor_driver_a4ce633887b9988f35aae5a68462eda65}{motor}} (self, inputA, inputB, channelA, channelB, motor\+ID)
+\begin{DoxyCompactList}\small\item\em also sets the direction def set\+\_\+duty(self, duty)\+: \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classmotor__driver_1_1_motor_driver_ac2ca950fa96f5ebcfdf4f8afa54d10a1}\label{classmotor__driver_1_1_motor_driver_ac2ca950fa96f5ebcfdf4f8afa54d10a1}} 
+{\bfseries en\+\_\+pin}
+\item 
+\mbox{\Hypertarget{classmotor__driver_1_1_motor_driver_ae0b6c8425ee387abe8e6965b47040f9d}\label{classmotor__driver_1_1_motor_driver_ae0b6c8425ee387abe8e6965b47040f9d}} 
+{\bfseries in1pin}
+\item 
+\mbox{\Hypertarget{classmotor__driver_1_1_motor_driver_a8937437004b1b871887c731e80ea35cb}\label{classmotor__driver_1_1_motor_driver_a8937437004b1b871887c731e80ea35cb}} 
+{\bfseries in2pin}
+\item 
+\mbox{\Hypertarget{classmotor__driver_1_1_motor_driver_ac6bc14e804bf9501e06ec61d072cd8a0}\label{classmotor__driver_1_1_motor_driver_ac6bc14e804bf9501e06ec61d072cd8a0}} 
+{\bfseries timer}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmotor__driver_1_1_motor_driver_ac30d316b06347c25f2fa3ce1e6b5797a}\label{classmotor__driver_1_1_motor_driver_ac30d316b06347c25f2fa3ce1e6b5797a}} 
+\index{motor\_driver.MotorDriver@{motor\_driver.MotorDriver}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!motor\_driver.MotorDriver@{motor\_driver.MotorDriver}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def motor\+\_\+driver.\+Motor\+Driver.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{en\+\_\+pin,  }\item[{}]{in1pin,  }\item[{}]{in2pin,  }\item[{}]{timer }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}   @brief                           Constructor for L6206 motor driver hardware
+   @details                            Constructor for L6206 motor driver hardware   
+   @param en_pin                       Encoder Pin
+   @param in1pin                       Motor Pin 1
+   @param in2pin                       Motor Pin 2
+   @param timer                        Defines the hardware timer used with the motorDriver
+\end{DoxyVerb}
+ 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmotor__driver_1_1_motor_driver_ad6e5414ca07a076c435af9a8b5c45d7c}\label{classmotor__driver_1_1_motor_driver_ad6e5414ca07a076c435af9a8b5c45d7c}} 
+\index{motor\_driver.MotorDriver@{motor\_driver.MotorDriver}!disable@{disable}}
+\index{disable@{disable}!motor\_driver.MotorDriver@{motor\_driver.MotorDriver}}
+\doxysubsubsection{\texorpdfstring{disable()}{disable()}}
+{\footnotesize\ttfamily def motor\+\_\+driver.\+Motor\+Driver.\+disable (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}   @brief                           Disables motor function
+   @details                            Keeps the motors from spinning by writing the en_pin
+                                       to logic low
+\end{DoxyVerb}
+ \mbox{\Hypertarget{classmotor__driver_1_1_motor_driver_a63b10626ef7cb4e9f2a84f6e659c196c}\label{classmotor__driver_1_1_motor_driver_a63b10626ef7cb4e9f2a84f6e659c196c}} 
+\index{motor\_driver.MotorDriver@{motor\_driver.MotorDriver}!enable@{enable}}
+\index{enable@{enable}!motor\_driver.MotorDriver@{motor\_driver.MotorDriver}}
+\doxysubsubsection{\texorpdfstring{enable()}{enable()}}
+{\footnotesize\ttfamily def motor\+\_\+driver.\+Motor\+Driver.\+enable (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}   @brief                           Enable the motors to spin
+   @details                            Allows the motors to spin by writing the en_pin
+                                       to logic high
+\end{DoxyVerb}
+ \mbox{\Hypertarget{classmotor__driver_1_1_motor_driver_adcb3702a5a644780ec7385cbd8d43851}\label{classmotor__driver_1_1_motor_driver_adcb3702a5a644780ec7385cbd8d43851}} 
+\index{motor\_driver.MotorDriver@{motor\_driver.MotorDriver}!fault\_cb@{fault\_cb}}
+\index{fault\_cb@{fault\_cb}!motor\_driver.MotorDriver@{motor\_driver.MotorDriver}}
+\doxysubsubsection{\texorpdfstring{fault\_cb()}{fault\_cb()}}
+{\footnotesize\ttfamily def motor\+\_\+driver.\+Motor\+Driver.\+fault\+\_\+cb (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{IRQ\+\_\+src }\end{DoxyParamCaption})}
+
+
+
+There are several fault conditions that may damage the motor / driver This function must disable the motor when a fault condition occurs. 
+
+\hypertarget{classmotor__driver_1_1_motor_driver_autotoc_md0}{}\doxysubsection{Reference the button interrupt code used in lab 1}\label{classmotor__driver_1_1_motor_driver_autotoc_md0}
+5 Fault conditions possible\+: undervoltage overcurrent short-\/circuit open-\/load \hypertarget{classmotor__driver_1_1_motor_driver_autotoc_md1}{}\doxysubsection{overtemperature}\label{classmotor__driver_1_1_motor_driver_autotoc_md1}
+\begin{DoxyVerb}   @brief                           Detects a hardware fault condition
+   @details                            Detects a hardware fault condition and interrupts harware function
+                                       by disabling motor function
+   @param IRQ_src                      The source of the interrupt causing a motor fault
+\end{DoxyVerb}
+ \mbox{\Hypertarget{classmotor__driver_1_1_motor_driver_a3867a2ea9f8b3bc641dfdd2299e4edbe}\label{classmotor__driver_1_1_motor_driver_a3867a2ea9f8b3bc641dfdd2299e4edbe}} 
+\index{motor\_driver.MotorDriver@{motor\_driver.MotorDriver}!getEnableState@{getEnableState}}
+\index{getEnableState@{getEnableState}!motor\_driver.MotorDriver@{motor\_driver.MotorDriver}}
+\doxysubsubsection{\texorpdfstring{getEnableState()}{getEnableState()}}
+{\footnotesize\ttfamily def motor\+\_\+driver.\+Motor\+Driver.\+get\+Enable\+State (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}   @brief                           Returns state of the motor.
+   @details                            Reads the enable pin.
+   @return                             Returns state of the motor.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{classmotor__driver_1_1_motor_driver_a4ce633887b9988f35aae5a68462eda65}\label{classmotor__driver_1_1_motor_driver_a4ce633887b9988f35aae5a68462eda65}} 
+\index{motor\_driver.MotorDriver@{motor\_driver.MotorDriver}!motor@{motor}}
+\index{motor@{motor}!motor\_driver.MotorDriver@{motor\_driver.MotorDriver}}
+\doxysubsubsection{\texorpdfstring{motor()}{motor()}}
+{\footnotesize\ttfamily def motor\+\_\+driver.\+Motor\+Driver.\+motor (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{inputA,  }\item[{}]{inputB,  }\item[{}]{channelA,  }\item[{}]{channelB,  }\item[{}]{motor\+ID }\end{DoxyParamCaption})}
+
+
+
+also sets the direction def set\+\_\+duty(self, duty)\+: 
+
+\begin{DoxyVerb}   @brief                           Constructor for Motor function
+   @details                            Constructor for Motor function
+   @param inputA                       Input pin 1 of 2
+   @param inputB                       Input pin 2 of 2
+   @param motorTimer                   Timer associated with the motor
+   @param channelA                     Timer channel 1 of 2
+   @param channelB                     Timer channel 2 of 2
+   @param motorID                      Identifier for the motor
+   @return                             Returns motor object.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+motor\+\_\+driver.\+py\end{DoxyCompactItemize}

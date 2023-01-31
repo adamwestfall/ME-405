@@ -1,0 +1,47 @@
+\hypertarget{namespacemotor__driver}{}\doxysection{motor\+\_\+driver Namespace Reference}
+\label{namespacemotor__driver}\index{motor\_driver@{motor\_driver}}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classmotor__driver_1_1_motor}{Motor}}
+\item 
+class \mbox{\hyperlink{classmotor__driver_1_1_motor_driver}{Motor\+Driver}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{namespacemotor__driver_a0901d12b636c75c8213e2f477e0fb9ad}\label{namespacemotor__driver_a0901d12b636c75c8213e2f477e0fb9ad}} 
+pyb {\bfseries enable1} = pyb.\+Pin(pyb.\+Pin.\+cpu.\+A10, pyb.\+Pin.\+OUT\+\_\+\+PP)
+\item 
+\mbox{\Hypertarget{namespacemotor__driver_a2b4ce32f04f1b2cd2544bc5637024f12}\label{namespacemotor__driver_a2b4ce32f04f1b2cd2544bc5637024f12}} 
+pyb {\bfseries input1} = pyb.\+Pin.\+cpu.\+B4
+\item 
+\mbox{\Hypertarget{namespacemotor__driver_a7bfeefc71079dbc1042d85bb1f112f20}\label{namespacemotor__driver_a7bfeefc71079dbc1042d85bb1f112f20}} 
+pyb {\bfseries input2} = pyb.\+Pin.\+cpu.\+B5
+\item 
+\mbox{\Hypertarget{namespacemotor__driver_a0b959508fb57e573d95e44536b16c954}\label{namespacemotor__driver_a0b959508fb57e573d95e44536b16c954}} 
+pyb {\bfseries timer1} = pyb.\+Timer(3, freq = 20000)
+\item 
+\mbox{\Hypertarget{namespacemotor__driver_aad0723cbb8b6384097ccf9623da7fa27}\label{namespacemotor__driver_aad0723cbb8b6384097ccf9623da7fa27}} 
+\mbox{\hyperlink{classmotor__driver_1_1_motor_driver}{Motor\+Driver}} {\bfseries m1\+\_\+driver} = \mbox{\hyperlink{classmotor__driver_1_1_motor_driver}{Motor\+Driver}}(enable1, input1, input2, timer1)
+\item 
+\mbox{\Hypertarget{namespacemotor__driver_ad64d2d5c9a7848a1fa6ce3386b29ae92}\label{namespacemotor__driver_ad64d2d5c9a7848a1fa6ce3386b29ae92}} 
+\mbox{\hyperlink{classmotor__driver_1_1_motor_driver}{Motor\+Driver}} {\bfseries m1} = m1\+\_\+driver.\+motor(input1, input2, 1, 2, \char`\"{}MOTOR A\char`\"{})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}   @file                            motor_driver.py
+   @brief                              Hardware driver for the L6206 dual H-bridge chip.
+   @details                            Hardware driver for the L6206 dual H-bridge chip.  This driver 
+                                       provides functionality to the nSleep pin to enable/disable either
+                                       1 stepper motor or 2 DC motors.  Driver provides fault reset functionality
+                                       and internally creates virtual motor objects based on user implementation.  
+                                       Includes MotorDriver class and Motor class.
+   @author                             Jason Davis
+   @author                             Conor Fraser
+   @author                             Adam Westfall
+   @copyright                          Creative Commons CC BY: Please visit https://creativecommons.org/licenses/by/4.0/ to learn more
+   @date                               January 24, 2023
+\end{DoxyVerb}
+ 
