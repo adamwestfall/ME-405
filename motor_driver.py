@@ -3,7 +3,8 @@
    @details                            Hardware driver for the L6206 dual H-bridge chip.  This driver 
                                        provides functionality to the nSleep pin to enable/disable either
                                        1 stepper motor or 2 DC motors.  Driver provides fault reset functionality
-                                       and internally creates virtual motor objects based on user implementation.                                       
+                                       and internally creates virtual motor objects based on user implementation.  
+                                       Includes MotorDriver class and Motor class.
    @author                             Jason Davis
    @author                             Conor Fraser
    @author                             Adam Westfall
@@ -177,8 +178,9 @@ class Motor:
     
     def set_duty(self, duty):
         '''   @brief                           Sets Motor Duty Cycle.
-           @details
-           @param duty
+           @details                            Includes a set of if and elif blocks to establish the direction of the motor 
+                                               as well as setting the duty cycle of the motor.
+           @param duty                         Duty cycle parsed in from user input.
         '''
         
         if (duty > 0):
@@ -203,19 +205,36 @@ class Motor:
             # print("{0} is stationary\n".format(self.motorID))
 
     def getDirection(self):
+        '''   @brief                           Returns spinning motor direction.
+           @details
+           @return                             Returns spinning motor direction.       
+        '''
         return self.direction
     
     def getRunState(self):
+        '''   @brief                           Returns motor run state.
+           @details
+           @return                             Returns motor run state.      
+        '''
         return self.isRunning
     
     def toggleRunState(self):
+        '''   @brief                           Toggles motor run state.
+           @details                            Inverses motor run state.
+        '''
         self.isRunning = not(self.isRunning)  
         
     def coast(self):
+        '''   @brief                           Sets motor duty cycle to zero.
+           @details                            Both motor channels have duty cycles set to zero.
+        '''
         self.channel1.pulse_width_percent(0)
         self.channel2.pulse_width_percent(0)
     
     def brake(self):
+        '''   @brief                           Applies 100% duty cycle to the motors.
+           @details                            Both motor channels have duty cycles set to 100% to brake the motors quickly.
+        '''
         self.channel1.pulse_width_percent(100)
         self.channel2.pulse_width_percent(100)
         
