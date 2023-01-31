@@ -109,7 +109,7 @@ if __name__ == '__main__':
         try:
             encoderA.update()
             print(encoderA.read())
-            # time.sleep(0.5)
+            time.sleep(0.5)
         except KeyboardInterrupt:
             print("bye bye")
             break
