@@ -1,10 +1,9 @@
 '''   @file                            motor_driver.py
-   @brief                              Hardware driver for the L6206 dual H-bridge chip
+   @brief                              Hardware driver for the L6206 dual H-bridge chip.
    @details                            Hardware driver for the L6206 dual H-bridge chip.  This driver 
                                        provides functionality to the nSleep pin to enable/disable either
                                        1 stepper motor or 2 DC motors.  Driver provides fault reset functionality
-                                       and internally creates virtual motor objects based on user implementation
-                                       
+                                       and internally creates virtual motor objects based on user implementation.                                       
    @author                             Jason Davis
    @author                             Conor Fraser
    @author                             Adam Westfall
@@ -22,8 +21,8 @@ class MotorDriver:
         '''   @brief                              Constructor for L6206 motor driver hardware
            @details                            
            @param en_pin                  Encoder Pin
-           @param in1pin                 
-           @param in2pin
+           @param in1pin                  Motor Pin 1
+           @param in2pin                  Motor Pin 2
            @param timer                   Defines the hardware timer used with the motorDriver
         '''
         
@@ -38,7 +37,7 @@ class MotorDriver:
         self.timer = timer
         
     def enable (self):
-        '''   @brief                              Allows the motors to spin
+        '''   @brief                              Enable the motors to spin
            @details                            Allows the motors to spin by writing the en_pin
                                                to logic high
         '''
@@ -69,12 +68,16 @@ class MotorDriver:
         '''   @brief                           Detects a hardware fault condition
            @details                            Detects a hardware fault condition and interrupts harware function
                                                by disabling motor function
-           @param IRQ_src                      The source of the interrupt
+           @param IRQ_src                      The source of the interrupt causing a motor fault
         '''
         print('  *** FAULT DETECTED! SUSPENDING L6206 HARDWARE OPERATION ***')
         self.disable()
         
     def getEnableState(self):
+        '''   @brief                           Returns state of the motor.
+           @details                            Reads the enable pin.
+           @return                             Returns state of the motor.
+        '''
         return self.en_pin.value()
     
     # def clearFaultCondition(self):
@@ -124,6 +127,7 @@ class MotorDriver:
            @param channelA                     Timer channel 1 of 2
            @param channelB                     Timer channel 2 of 2
            @param motorID                      Identifier for the motor
+           @return                             Returns motor object.
         '''
         return Motor(inputA, inputB, self.timer, channelA, channelB, motorID)
     
@@ -158,12 +162,24 @@ class Motor:
         self.direction = 0
         
     def getMotorID(self):
+        '''   @brief                           Returns Motor ID
+           @details
+           @return                             Returns Motor ID        
+        '''
         return self.motorID
     
     def getDuty(self):
+        '''   @brief                           Returns Motor Duty Cycle.
+           @details
+           @return                             Returns Motor Duty Cycle.       
+        '''
         return self.duty
     
     def set_duty(self, duty):
+        '''   @brief                           Sets Motor Duty Cycle.
+           @details
+           @param duty
+        '''
         
         if (duty > 0):
             self.duty = duty
