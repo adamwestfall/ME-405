@@ -18,7 +18,7 @@ import pyb, time
 class MotorDriver:
     
     def __init__(self, en_pin, in1pin, in2pin, timer): 
-        '''   @brief                              Constructor for L6206 motor driver hardware
+        '''   @brief                              Constructor for L6206 motor driver hardware, plug the green pin into the positive terminal and the orange into the negative
            @details                            
            @param en_pin                  Encoder Pin
            @param in1pin                  Motor Pin 1
@@ -186,16 +186,20 @@ class Motor:
             self.duty = duty
             self.direction = 1
             #set the "reverse" channel to zero first
-            self.channel1.pulse_width_percent(0)
-            self.channel2.pulse_width_percent(duty)
+            self.channel1.pulse_width_percent(duty)
+            self.channel2.pulse_width_percent(0)
+            
+            
             
         elif (duty < 0):
             duty *= -1
             self.duty = duty
             self.direction = -1
             #set the "forward channel to zero first
-            self.channel2.pulse_width_percent(0)
-            self.channel1.pulse_width_percent(duty)
+            self.channel2.pulse_width_percent(duty)
+            self.channel1.pulse_width_percent(0)
+            
+            
             
         elif (duty == 0):
             self.duty = duty
